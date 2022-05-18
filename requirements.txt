@@ -1,0 +1,4 @@
+python-dotenv==0.20.0
+aiogram==2.20
+requests==2.27.1
+psycopg2==2.9.3

@@ -1,17 +1,16 @@
-from saver_to_db import saver_to_db
+from DB_work.saver_to_db import saver_to_db
 from datetime import datetime
 import time
 import requests
 
 
-def my_parser(crypto: str):
+def crypto_parser(crypto: str):
     now_time = int(datetime.timestamp(datetime.now()))
     i = 0
     if len(crypto) > 0:
         crypto = crypto.upper()
     else:
         return "Please, enter a name of crypto!"
-    print(crypto)
     while True:
         URL = f"https://api2.bybit.com/public/linear/market/kline?symbol={crypto}&resolution=60&from={now_time - (125 * 24 * 60 * 60 * (i + 1))}&to={now_time - (125 * 24 * 60 * 60 * i)}"
 
@@ -23,11 +22,14 @@ def my_parser(crypto: str):
         response = requests.get(url=URL, headers=HEADERS)
         if response.status_code:
             list_data = response.json()
+            # print(list_data)
             if list_data['result'] is None:  # empty result
                 URL = f"https://api2.bybit.com/v3/public/instrument/kline/list?symbol={crypto}&resolution=60&from={now_time - (125 * 24 * 60 * 60 * (i + 1))}&to={now_time - (125 * 24 * 60 * 60 * i)}"
-                list_data = requests.get(url=URL, headers=HEADERS).json()['result']['list']
-            saver_to_db(crypto, list_data)
-            if len(list_data) < 3000:
+                list_data = requests.get(url=URL, headers=HEADERS).json()
+                if list_data['result'] is None:
+                    return 'error'
+            saver_to_db(crypto, list_data['result']['list'])
+            if len(list_data['result']['list']) < 3000:
                 break
 
         i += 1

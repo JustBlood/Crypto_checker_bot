@@ -1,14 +1,14 @@
 # Abilities of my bot
+____
+## commands:
+    /start - starting bot, send a greeting message
+    /get_parsed_crypto - send all avalilable names of crypto in db already
+    /get_crypto - send info about choosen (entered) crypto
+    /get_exchange_rate - send info about now exchange rate entered crypto
+    /info - send message about all methods (inline), you can choose interested method and look, how it works
+    /goodbye - send massage with random goodbye to user
 
-comamnds:
-/start - starting bot, send a greeting message
-/get_parsed_crypto - send all avalilable names of crypto in db already
-/get_crypto - send info about choosen (entered) crypto
-/get_exchange_rate - send info about now exchange rate entered crypto
-/info - send message about all methods (inline), you can choose interested method and look, how it works
-/goodbye - send massage with random goodbye to user
-
-menus:
+## menus:
     start:
         button1 - show available databases (bot sending names of crypto, which already parsed)
         button2 - get available database (bot sending file in csv format)
