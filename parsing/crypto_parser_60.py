@@ -4,13 +4,9 @@ import time
 import requests
 
 
-def crypto_parser(crypto: str):
+def main_parser_60(crypto: str):
     now_time = int(datetime.timestamp(datetime.now()))
     i = 0
-    if len(crypto) > 0:
-        crypto = crypto.upper()
-    else:
-        return "Please, enter a name of crypto!"
     while True:
         URL = f"https://api2.bybit.com/public/linear/market/kline?symbol={crypto}&resolution=60&from={now_time - (125 * 24 * 60 * 60 * (i + 1))}&to={now_time - (125 * 24 * 60 * 60 * i)}"
 

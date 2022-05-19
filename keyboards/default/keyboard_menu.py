@@ -12,12 +12,12 @@ from aiogram import types
 main_kb = types.ReplyKeyboardMarkup(
     keyboard=[
         [
-            types.KeyboardButton('Крипта в базе'),
-            types.KeyboardButton('Взять базу данных крипты по имени')
+            types.KeyboardButton('🟠 Крипта в базе'),
+            types.KeyboardButton('🟡 Взять базу данных крипты по имени')
         ],
         [
-            types.KeyboardButton('Узнать текущий курс крипты по имени'),
-            types.KeyboardButton('Подробнее о командах')
+            types.KeyboardButton('🟢 Узнать текущий курс крипты по имени'),
+            types.KeyboardButton('⚪ Подробнее о командах')
         ]
     ]
     ,

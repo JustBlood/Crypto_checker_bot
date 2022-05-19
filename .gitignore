@@ -1,0 +1,5 @@
+#ignore files_to_send folder
+files_to_send/
+
+# Ignore IDE specific files
+.idea/
