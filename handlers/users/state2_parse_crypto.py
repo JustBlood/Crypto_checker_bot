@@ -5,6 +5,9 @@ from keyboards.default import main_kb
 from loader import dp
 from states import EnterCrypto, CheckCryptoNow
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 @dp.message_handler(state=EnterCrypto.continue_menu)
 async def get_crypto_file(message: types.Message, state: FSMContext):
     """Тут происходит парсинг крипты и отправка файла её данных"""
@@ -13,8 +16,10 @@ async def get_crypto_file(message: types.Message, state: FSMContext):
         await EnterCrypto.inputing_crypto.set()
         return
     elif message.text == '⚪ Вернуться в главное меню':
+        logging.info('Операция успешна.')
         await message.answer('Операция завершена, спасибо за использование 😊',reply_markup=main_kb)
     else:
+        logging.info(f'Неизвестная команда: {message.text}')
         await message.answer('🥺 Увы, комманда не распознана. Возвращаю в главное меню...',reply_markup=main_kb)
     await state.finish()
 
@@ -26,7 +31,9 @@ async def get_crypto_file(message: types.Message, state: FSMContext):
         await CheckCryptoNow.inputing_crypto.set()
         return
     elif message.text == '⚪ Вернуться в главное меню':
+        logging.info('Операция успешна.')
         await message.answer('Операция завершена, спасибо за использование 😊',reply_markup=main_kb)
     else:
+        logging.info(f'Неизвестная команда: {message.text}')
         await message.answer('🥺 Увы, комманда не распознана. Возвращаю в главное меню...',reply_markup=main_kb)
     await state.finish()

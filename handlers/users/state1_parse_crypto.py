@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 
 from DB_work.get_db_names import get_db_names
 from DB_work.get_crypto import save_crypto_data_in_file
+from keyboards.default import main_kb
 from keyboards.default.keyboard_continue_menu import continue_kb
 from loader import dp
 from states import EnterCrypto
@@ -24,6 +25,7 @@ async def get_crypto_file(message: types.Message, state: FSMContext):
             save_crypto_data_in_file(message)
         else:
             await message.answer('😔 Данной криптовалюты не существует.')
+            await message.answer('Возвращаю в главное меню...', reply_markup=main_kb)
             await state.finish()
             return
 

@@ -1,8 +1,10 @@
+import logging
 from datetime import datetime
 import requests
 
 
 def parser_1(crypto: str):
+    logging.info('parser_1 Начал работу...')
     now_time = int(datetime.timestamp(datetime.now()))
 
     URL = f"https://api2.bybit.com/public/linear/market/kline?symbol={crypto}&resolution=1&from={now_time - 600}&to={now_time}"
@@ -23,5 +25,4 @@ def parser_1(crypto: str):
                 return 'error empty result'
     else:
         return 'error status code'
-    print(list_data['result']['list'][-1])
     return list_data['result']['list'][-1]
